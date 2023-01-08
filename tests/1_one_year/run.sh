@@ -9,7 +9,7 @@ set -e
 . ../common/lib.sh
 
 POOL_NAME="sanoid-test-1"
-POOL_TARGET=""  # root
+POOL_TARGET=$(mktemp -d)
 RESULT="/tmp/sanoid_test_result"
 RESULT_CHECKSUM="92f2c7afba94b59e8a6f6681705f0aa3f1c61e4aededaa38281e0b7653856935"
 
