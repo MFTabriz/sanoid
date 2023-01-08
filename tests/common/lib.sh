@@ -51,8 +51,7 @@ function checkEnvironment {
 
 function disableTimeSync {
     # disable ntp sync
-    which timedatectl > /dev/null
-    if [ $? -eq 0 ]; then
+    if [ -x timedatectl ]; then
         timedatectl set-ntp 0
     fi
 }
