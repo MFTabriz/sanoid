@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # run's all the available tests
 
