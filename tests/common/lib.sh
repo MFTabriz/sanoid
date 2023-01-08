@@ -13,8 +13,13 @@ function setup {
     rm -f /var/cache/sanoidsnapshots.txt
 
     # install needed sanoid configuration files
-    [ -f sanoid.conf ] && cp sanoid.conf /etc/sanoid/sanoid.conf
-    cp ../../sanoid.defaults.conf /etc/sanoid/sanoid.defaults.conf
+    if [ -f sanoid.conf ]; then
+        if ! [ -d /etc/sanoid ]; then
+            mkdir -p /etc/sanoid
+        fi
+        cp sanoid.conf /etc/sanoid/sanoid.conf
+        cp ../../sanoid.defaults.conf /etc/sanoid/sanoid.defaults.conf
+    fi
 }
 
 function checkEnvironment {
