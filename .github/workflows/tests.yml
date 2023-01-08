@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: install required system packages
-      run: apt-get update && apt-get -y install --no-install-recommends apt-utils build-essential git zfsutils-linux zfs-dkms zfs-initramfs ca-certificates kmod
+      run: apt-get update && apt-get -y install apt-utils build-essential git zfsutils-linux zfs-dkms zfs-initramfs ca-certificates kmod
       
     - name: install perl deps
       run: cpan install Config::IniFiles
@@ -32,4 +32,4 @@ jobs:
       run: cd tests && ./run-tests.sh
       
     - name: log test results
-      run: cat /tmp/sanoid_*.log
+      run: cat /tmp/sanoid_test_run_1_one_year.log && cat /tmp/sanoid_test_run_2_dst_handling.log
