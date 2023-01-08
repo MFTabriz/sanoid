@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: install required system packages
-      run: apt-get update && apt-get -y install apt-utils build-essential git zfsutils-linux zfs-dkms zfs-initramfs ca-certificates kmod && /sbin/modprobe zfs
+      run: apt-get update && apt-get -y install apt-utils build-essential git zfsutils-linux zfs-dkms zfs-initramfs ca-certificates kmod # && /sbin/modprobe zfs
       
     - name: install perl deps
       run: cpan install Config::IniFiles
