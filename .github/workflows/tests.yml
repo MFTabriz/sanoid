@@ -20,7 +20,7 @@ jobs:
       run: apt-get update && apt-get -y install apt-utils build-essential git zfsutils-linux zfs-dkms ca-certificates
   
     - name: set up zfs
-      run: cp -r /lib/modules/5.15.0-57-generic/* /lib/modules/5.15.0-1024-azure/ && modprobe zfs
+      run: mkdir /lib/modules/5.15.0-1024-azure && cp -r /lib/modules/5.15.0-57-generic/* /lib/modules/5.15.0-1024-azure/ && modprobe zfs
   
     - name: install perl deps
       run: cpan install Config::IniFiles Capture::Tiny
