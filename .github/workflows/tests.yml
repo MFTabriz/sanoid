@@ -22,6 +22,9 @@ jobs:
     - name: install faketime
       run: git clone https://github.com/wolfcw/libfaketime /libfaketime && cd /libfaketime && make && make install
   
+    - name: prepare env
+      run: /sbin/modprobe zfs && export LD_PRELOAD=/usr/local/lib/faketime/libfaketimeMT.so.1 && FAKETIME="-15d" && date
+  
     - name: run tests
       run: cd tests && ./run-tests.sh
       
