@@ -16,6 +16,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: install required packages
+      run: apt-get update && apt-get -y install --no-install-recommends apt-utils build-essential git zfs
+      
+    - name: install faketime
+      run: git clone https://github.com/wolfcw/libfaketime /libfaketime && cd /libfaketime && make && make install
+  
     - name: run tests
       run: cd tests && ./run-tests.sh
       
