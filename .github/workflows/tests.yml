@@ -10,6 +10,8 @@ jobs:
   run:
 
     runs-on: ubuntu-latest
+    container:
+      image: docker.io/ubuntu:22.04
 
     steps:
     - uses: actions/checkout@v3
