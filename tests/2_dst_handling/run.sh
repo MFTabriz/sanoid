@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+set -e
 
 # this test will check the behaviour arround a date where DST ends
 # with hourly, daily and monthly snapshots checked in a 15 minute interval
