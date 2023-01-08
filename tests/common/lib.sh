@@ -25,8 +25,7 @@ function setup {
 function checkEnvironment {
     ASK=1
 
-    which systemd-detect-virt > /dev/null
-    if [ $? -eq 0 ]; then
+    if [ -x systemd-detect-virt ]; then
         systemd-detect-virt --vm > /dev/null
         if [ $? -eq 0 ]; then
             # we are in a vm
