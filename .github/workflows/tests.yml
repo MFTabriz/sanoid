@@ -16,3 +16,6 @@ jobs:
 
     - name: run tests
       run: cd tests && ./run-tests.sh
+      
+    - name: log results
+      run: cat /tmp/sanoid_*.log
