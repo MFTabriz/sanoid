@@ -16,8 +16,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: install required packages
-      run: apt-get update && apt-get -y install --no-install-recommends apt-utils build-essential git zfsutils-linux ca-certificates
+    - name: install required system packages
+      run: apt-get update && apt-get -y install --no-install-recommends apt-utils build-essential git zfsutils-linux ca-certificates kmod
+      
+    - name: install perl deps
+      run: cpan install Config::IniFiles
       
     - name: install faketime
       run: git clone https://github.com/wolfcw/libfaketime /libfaketime && cd /libfaketime && make && make install
