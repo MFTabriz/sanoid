@@ -29,7 +29,9 @@ jobs:
       run: export LD_PRELOAD=/usr/local/lib/faketime/libfaketimeMT.so.1 && FAKETIME="-15d" date
   
     - name: run tests
+      id: run_tests
       run: cd tests && ./run-tests.sh
       
     - name: log test results
+      if: always() && steps.run_tests.outcome == 'failure'
       run: cat /tmp/sanoid_test_run_1_one_year.log && cat /tmp/sanoid_test_run_2_dst_handling.log
