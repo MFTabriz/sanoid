@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+set -e
 
 # this test will take hourly, daily and monthly snapshots
 # for the whole year of 2017 in the timezone Europe/Vienna
