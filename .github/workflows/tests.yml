@@ -20,7 +20,7 @@ jobs:
       run: apt-get update && apt-get -y install apt-utils build-essential git zfsutils-linux zfs-dkms ca-certificates # && /sbin/modprobe zfs
       
     - name: install perl deps
-      run: cpan install Config::IniFiles
+      run: cpan install Config::IniFiles Capture::Tiny
       
     - name: install faketime
       run: git clone https://github.com/wolfcw/libfaketime /libfaketime && cd /libfaketime && make && make install
