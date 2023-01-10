@@ -22,7 +22,7 @@ jobs:
       run: apt-get update && apt-get -y install apt-utils build-essential git zfsutils-linux kmod zfs-dkms ca-certificates
   
     - name: set up zfs
-      run:  ls -lah /lib/modules && ls -lah /lib/modules/$(uname -r) && modprobe -v zfs && modinfo zfs
+      run:  ls -lah /lib/modules && ls -lah /lib/modules/$(uname -r) && modinfo zfs && modprobe -vvv zfs
   
     - name: install perl deps
       run: cpan install Config::IniFiles Capture::Tiny
