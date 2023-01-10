@@ -2,9 +2,7 @@ name: Tests
 
 on:
   push:
-    branches: [ "master" ]
   pull_request:
-    branches: [ "master" ]
 
 jobs:
   run:
@@ -13,28 +11,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: set up env
-      run: sudo mkdir -p /lib/modules/5.15.0-1024-azure && sudo ln -s /lib/modules/$(uname -r) /lib/modules/5.15.0-57-generic && ls -lah /lib/modules
-      
     - name: install required system packages
-      run: sudo apt-get update && sudo apt-get -y install apt-utils build-essential git zfsutils-linux kmod zfs-dkms ca-certificates
-  
-    - name: set up zfs
-      run:  ls -lah /lib/modules && ls -lah /lib/modules/$(uname -r) && modinfo zfs && sudo modprobe -vvv zfs
-  
+      run: sudo apt-get update && sudo apt-get -y install apt-utils build-essential zfsutils-linux kmod zfs-dkms ca-certificates
+
     - name: install perl deps
       run: sudo cpan install Config::IniFiles Capture::Tiny
       
-    - name: install faketime
-      run: git clone https://github.com/wolfcw/libfaketime #&& cd libfaketime && make && make install && cd ..
-  
-    - name: prepare env
-      run: export LD_PRELOAD=/usr/local/lib/faketime/libfaketimeMT.so.1 #&& FAKETIME="-15d" date
-  
     - name: run tests
       id: run_tests
       run: cd tests && sudo ./run-tests.sh
+      timeout-minutes: 60
       
     - name: log test results
       if: always() && steps.run_tests.outcome == 'failure'
-      run: cat /tmp/sanoid_test_run_1_one_year.log && cat /tmp/sanoid_test_run_2_dst_handling.log
+      run: cat /tmp/sanoid_test_run_*.log
