@@ -10,12 +10,13 @@ jobs:
   run:
 
     runs-on: ubuntu-22.04
-
+    container:
+      image: docker.io/ubuntu:22.04
     steps:
     - uses: actions/checkout@v3
 
     - name: install required system packages
-      run: sudo apt-get update && apt-get -y install apt-utils build-essential git zfsutils-linux kmod zfs-dkms ca-certificates
+      run: apt-get update && apt-get -y install apt-utils build-essential git zfsutils-linux kmod zfs-dkms ca-certificates
   
     - name: set up zfs
       run: modinfo zfs; modprobe zfs
