@@ -33,7 +33,7 @@ jobs:
   
     - name: run tests
       id: run_tests
-      run: cd tests && ./run-tests.sh
+      run: cd tests && sudo ./run-tests.sh
       
     - name: log test results
       if: always() && steps.run_tests.outcome == 'failure'
