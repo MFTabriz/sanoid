@@ -26,10 +26,10 @@ jobs:
       run: sudo cpan install Config::IniFiles Capture::Tiny
       
     - name: install faketime
-      run: git clone https://github.com/wolfcw/libfaketime && cd libfaketime && make && make install && cd ..
+      run: git clone https://github.com/wolfcw/libfaketime #&& cd libfaketime && make && make install && cd ..
   
     - name: prepare env
-      run: export LD_PRELOAD=/usr/local/lib/faketime/libfaketimeMT.so.1 && FAKETIME="-15d" date
+      run: export LD_PRELOAD=/usr/local/lib/faketime/libfaketimeMT.so.1 #&& FAKETIME="-15d" date
   
     - name: run tests
       id: run_tests
