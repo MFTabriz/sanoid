@@ -10,8 +10,6 @@ jobs:
   run:
 
     runs-on: ubuntu-22.04
-    container:
-      image: docker.io/ubuntu:22.04
     steps:
     - uses: actions/checkout@v3
 
@@ -19,7 +17,7 @@ jobs:
       run: mkdir -p /lib/modules/5.15.0-1024-azure && ln -s /lib/modules/$(uname -r) /lib/modules/5.15.0-57-generic && ls -lah /lib/modules
       
     - name: install required system packages
-      run: apt-get update && apt-get -y install apt-utils build-essential git zfsutils-linux kmod zfs-dkms ca-certificates
+      run: sudo apt-get update && sudo apt-get -y install apt-utils build-essential git zfsutils-linux kmod zfs-dkms ca-certificates
   
     - name: set up zfs
       run:  ls -lah /lib/modules && ls -lah /lib/modules/$(uname -r) && modinfo zfs && modprobe -vvv zfs
