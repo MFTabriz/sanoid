@@ -15,11 +15,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: set up env
+      run: ln -s /lib/modules/$(uname -r) /lib/modules/5.15.0-57-generic && ls -lah /lib/modules
+      
     - name: install required system packages
       run: apt-get update && apt-get -y install apt-utils build-essential git zfsutils-linux kmod zfs-dkms ca-certificates
   
     - name: set up zfs
-      run: modinfo -v zfs && modprobe -v zfs
+      run:  modprobe -v zfs && modinfo zfs
   
     - name: install perl deps
       run: cpan install Config::IniFiles Capture::Tiny
