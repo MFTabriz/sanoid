@@ -11,12 +11,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: install required system packages
-      run: sudo apt-get update && sudo apt-get -y install apt-utils build-essential git zfsutils-linux kmod zfs-dkms ca-certificates
-
     - name: install perl deps
       run: sudo cpan install Config::IniFiles Capture::Tiny
       timeout-minutes: 20
+      
+    - name: install required system packages
+      run: sudo apt-get update && sudo apt-get -y install apt-utils build-essential git zfsutils-linux kmod zfs-dkms ca-certificates
       
     - name: run tests
       id: run_tests
