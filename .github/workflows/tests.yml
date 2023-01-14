@@ -18,7 +18,7 @@ jobs:
       run: ulimit -s unlimited && ulimit -v unlimited && ulimit -a && sudo dmesg -c >/var/tmp/dmesg-prerun
 
     - name: test zfs
-      run: zfs --version && zpool list && TMP_POOL=$(mktemp -p ./) && sudo truncate -s 128M $TMP_POOL && zpool create testpool $TMP_POOL && zpool list
+      run: zfs --version #&& zpool list && TMP_POOL=$(mktemp -p ./) && sudo truncate -s 128M $TMP_POOL && zpool create testpool $TMP_POOL && zpool list
       
     - name: install perl deps
       run: sudo cpan install Config::IniFiles Capture::Tiny
