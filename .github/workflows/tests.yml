@@ -16,7 +16,7 @@ jobs:
       timeout-minutes: 20
       
     - name: install required system packages
-      run: sudo apt-get update && sudo apt-get -y install apt-utils build-essential git zfsutils-linux kmod zfs-dkms ca-certificates
+      run: sudo apt-get update && sudo apt-get -y install apt-utils build-essential git zfsutils-linux kmod zfs-dkms ca-certificates && zfs --version
       
     - name: run tests
       id: run_tests
