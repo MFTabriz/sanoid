@@ -10,19 +10,19 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
-
-    - name: install perl deps
-      run: sudo cpan install Config::IniFiles Capture::Tiny
-      timeout-minutes: 20
       
     - name: install required system packages
       run: sudo apt-get update && sudo apt-get -y install apt-utils build-essential git zfsutils-linux kmod zfs-dkms ca-certificates
       
     - name: set env
-      run: ulimit -s unlimited && ulimit -v unlimited && ulimit -a
+      run: ulimit -s unlimited && ulimit -v unlimited && ulimit -a && sudo dmesg -c >/var/tmp/dmesg-prerun
 
     - name: test zfs
-      run: zfs --version && zpool list && mkdir -p testpool && truncate -s 128M testpool/zpool.img && zpool create -f testpool $(mktemp) && zpool list
+      run: zfs --version && zpool list && mkdir -p /testpool && truncate -s 128M /testpool/zpool.img && zpool create testpool /testpool/zpool.img && zpool list
+      
+    - name: install perl deps
+      run: sudo cpan install Config::IniFiles Capture::Tiny
+      timeout-minutes: 20
       
     - name: run tests
       id: run_tests
