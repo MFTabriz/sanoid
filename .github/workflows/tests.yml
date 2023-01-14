@@ -18,6 +18,9 @@ jobs:
     - name: install required system packages
       run: sudo apt-get update && sudo apt-get -y install apt-utils build-essential git zfsutils-linux kmod zfs-dkms ca-certificates
       
+    - name: set env
+      run: ulimit -s unlimited && ulimit -v unlimited && ulimit -a
+
     - name: test zfs
       run: zfs --version && zpool list && mkdir -p testpool && truncate -s 128M testpool/zpool.img && zpool create -f testpool $(mktemp) && zpool list
       
